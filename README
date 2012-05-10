@@ -1,0 +1,25 @@
+munge-js
+========
+
+Some browsers insist on choking on trailing commas in javascript.
+
+Various tools like js lint and minifiers can detect trailing commas,
+yet all of them that I have tried refuse to fix them.
+
+Even js compilers refuse to remove the trailing commas.
+
+Well, this annoyance is trivially (ahem) solvable with regular expressions.
+
+Enter munge-js. It will convert good-looking js to something msie might grok.
+
+Usage
+-----
+
+import munge_js
+
+output_js = munge_js.convert(input_js)
+
+License
+-------
+
+MIT
