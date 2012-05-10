@@ -20,7 +20,7 @@ def get_fixtures():
 class MungeJsTest(TestCase):
     pass
 
-for fixture in get_fixtures():
+def generate(fixture):
     def test(self):
         with open(os.path.join(fixture_root, 'input', fixture + '.js')) as f:
             input = f.read()
@@ -29,7 +29,10 @@ for fixture in get_fixtures():
         actual = munge_js.convert(input)
         self.assert_equal(expected, actual)
     
-    setattr(MungeJsTest, 'test_' + fixture, test)
+    return test
+
+for fixture in get_fixtures():
+    setattr(MungeJsTest, 'test_' + fixture, generate(fixture))
 
 if __name__ == '__main__':
     unittest.main()
